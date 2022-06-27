@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="User">
+   
+   <select id="UserList"
+       resultType="com.green.user.vo.UserVo">
+     SELECT  USERID, USERPASS, USERNAME, USERPOINT
+      FROM   USERS
+      ORDER  BY USERID ASC    
+   </select>
+   
+   <select id="Login"
+       parameterType = "hashmap"
+       resultType    = "com.green.user.vo.UserVo">
+       SELECT   USERID, USERPASS, USERNAME, USERPOINT
+        FROM    USERS
+        WHERE   USERID    =  #{ userid }
+        AND     USERPASS  =  #{ userpass }   
+   </select>
+   
+   <insert id="InsertUser">
+     INSERT   INTO   USERS (USERID, USERPASS, USERNAME, USERPOINT)
+       VALUES ( #{userid}, #{userpass}, #{username}, #{userpoint} )
+   </insert>
+   
+</mapper> 
+
+
+
+
+
+ 
